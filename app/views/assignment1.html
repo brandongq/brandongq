@@ -1,0 +1,224 @@
+<h1><strong>Assignment 1</strong></h1>
+
+<section>
+  <h3>What does "Microservices Architecture" mean?</h3>
+  <description>
+    A Microservice Architecture is an architecture that<br>
+    allows to create a single page application by dividing<br>
+    the overall application into smaller services. This means<br>
+    each service is responsible of one thing. It is very<br>
+    versatile but the problem comes when it is time to define<br>
+    how big or small is the thing that it is responsible for.<br>
+    Microservices is helpful and convenient because every service<br>
+    is independently deployable and scalable and it is not needed<br>
+    to do it for all the application but only that service.<br>
+    On the contrary, a monolith architecture needs has all of its<br>
+    functionality in a single process which means it needs to be<br>
+    replicated completely. That doesn't mean a monolith is not<br>
+    useful since it is great and easier for small applications.
+
+  </description>
+</section>
+
+<br>
+<br>
+
+<section>
+  <h3>Explain each line of the cc499-setup.sh file</h3>
+  <description>
+    echo "Start. We are about to setup the environment for your Cloud Compting class. Excited?" <br>
+    => shows a message<br>
+    echo "🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂"<br>
+    => shows a message<br>
+    <br>
+    cd $HOME<br>
+    => goes to the personal directory of the user<br>
+    mkdir Projects<br>
+    => creates a directory named "Projects"<br>
+    mkdir .aws<br>
+    => creates a directory named ".aws"<br>
+    cd .aws<br>
+    => goes to ".aws" directory<br>
+    touch credentials<br>
+    => creates an empty file named "Credentials"<br>
+    cd ..<br>
+    => goes back to the previous directory<br>
+    sudo apt-get update<br>
+    => gets the update of software source<br>
+    sudo apt-get install -f<br>
+    => fixes broken dependencies<br>
+    <br>
+    <br>
+    echo " **************** Installing git  **************** "<br>
+    => writes a message<br>
+    sudo apt-get install git<br>
+    => installs git<br>
+    <br>
+    <br>
+    echo " **************** Installing NodeJs **************** "<br>
+    => shows a message<br>
+    sudo apt-get install nodejs<br>
+    => installs nodejs<br>
+    sudo apt-get install npm<br>
+    => installs npm<br>
+    sudo ln -s /usr/bin/nodejs /usr/bin/node<br>
+    => creates a symbolic link<br>
+    <br>
+    <br>
+    echo " **************** Installing AWS CLI **************** "222<br>
+    => shows a message<br>
+    sudo apt-get -y install python-pip<br>
+    => forces to install a python package management system<br>
+    sudo pip install --upgrade pip<br>
+    => pip is upgraded
+    sudo pip install awscli --ignore-installed six<br>
+    => installs command line interface and ignores the installed packages<br>
+    <br>
+    <br>
+    echo " **************** Installing yeoman **************** "<br>
+    => shows a message<br>
+    sudo npm install -g yo<br>
+    => installs Yeoman<br>
+    <br>
+    <br>
+    echo " **************** Installing grunt **************** "<br>
+    => shows a message<br>
+    sudo npm install -g grunt-cli<br>
+    => installs grunt<br>
+    <br>
+    <br>
+    echo " **************** Installing serverless **************** "<br>
+    => shows a message<br>
+    sudo npm install -g serverless<br>
+    => installs serverless<br>
+    <br>
+    <br>
+    echo " **************** Installing dot net core **************** "<br>
+    => shows a message<br>
+    sudo apt-get install curl libunwind8 gettext<br>
+    => curl tells apt-get to install libunwind8<br>
+    curl -sSL -o dotnet.tar.gz https://go.microsoft.com/fwlink/?LinkID=809130<br>
+    =>sends or get<br>
+    sudo mkdir -p /opt/dotnet && sudo tar zxf dotnet.tar.gz -C /opt/dotnet<br>
+    =><br>
+    sudo ln -s /opt/dotnet/dotnet /usr/local/bin<br>
+    =><br>
+  </description>
+</section>
+
+<br>
+<br>
+
+<section>
+  <h3>Creae a grunt task to deploy your website to your own bucket in S3</h3>
+  <description>
+    First a plug in needs to be created. In this case I used:<br>
+    require('time-grunt')(grunt);<br><br>
+    Then the task needs to be added. Within it the "" needs to be included. <br>
+    grunt.registerTask('deploy', [<br>
+    'clean:dist',<br>
+    'wiredep',<br>
+    'useminPrepare',<br>
+    'concurrent:dist',<br>
+    'postcss',<br>
+    'ngtemplates',<br>
+    'concat',<br>
+    'ngAnnotate',<br>
+    'copy:dist',<br>
+    'cdnify',<br>
+    'cssmin',<br>
+    'uglify',<br>
+    'filerev',<br>
+    'usemin',<br>
+    'htmlmin',<br>
+    'deployWebPage'<br>
+    ]);<br><br>
+    After that it had to be specified what attrobiutes should contain the task:<br>
+    //Deploy WebPage<br>
+    deployWebPage: {<br>
+    options: {<br>
+    key: '*key',<br>
+    secret: '*key',<br>
+    bucket: 'brandongq',<br>
+    access: 'public-read',<br>
+    connections: 5<br>
+    },<br>
+    dist: {<br>
+    files: [{<br>
+    expand: true,<br>
+    cwd: 'dist/',<br>
+    src: '**/*.*',<br>
+    dest: './'<br>
+    }]<br>
+    }<br>
+    }<br><br>
+    And lastly the task shoul be run as I called it:<br>
+    grunt deploy<br>
+  </description>
+</section>
+
+<br>
+<br>
+
+<section>
+  <h3>Explain how routes work in Angular and code example</h3>
+  <description>
+    Angular brings everything from the server in order to have it with itself.<br>
+    It is useful when a Singl Web Application is needed. This way the webpage is<br>
+    not completely reloaded but just the parts that need to be reloaded.<br>
+    In other words it "divides" the webpage into smaller parts named "views"<br>
+    and makes it more manageable.<br>
+    Example:<br>
+    var sampleApp = angular.module('phonecatApp', []);<br>
+    <br>
+    sampleApp .config(['$routeProvider',<br>
+    function($routeProvider) {<br>
+    $routeProvider.<br>
+    when('/addOrder', {<br>
+    templateUrl: 'templates/add-order.html',<br>
+    controller: 'AddOrderController'<br>
+    }).<br>
+    when('/showOrders', {<br>
+    templateUrl: 'templates/show-orders.html',<br>
+    controller: 'ShowOrdersController'<br>
+    }).<br>
+    otherwise({<br>
+    redirectTo: '/addOrder'<br>
+    });<br>
+    }]);<br>
+    *code obtained from internet
+</description>
+</section>
+
+<br>
+<br>
+
+<section>
+  <h3>Explain how you can have more than one access key in your computer and how to use each one. Provi code or confguration examples.</h3>
+  <description>
+    To have more than one access key it is necessary to add to<br>
+    the file that contains the keys the other keys that want to<br>
+    be used. They must have a different label than "[default]" <br>
+    and to use them it that label must be specified. <br><br>
+    Example: <br><br>
+    [default] <br>
+    aws_access_key=*insert key here*<br>
+    aws_secret_access_key=*insert key here*<br>
+    <br>
+    [key2] <br>
+    aws_access_key=*insert different key here*<br>
+    aws_secret_access_key=*insert different key here*<br>
+  </description>
+</section>
+
+<section>
+  <h3>Explain what are you going to do different this semester based on last semester experience.</h3>
+  <description>
+    Since I didn't take a class the las semester  I cannot make a <br>
+    comparison to it but I can say that I will manage my time in<br>
+    a better way than before. Also, I will give more importance to <br>
+    all my classes and focus more on them. I will read what I have<br>
+    to read and watch the videos that I need to see and, if time<br>
+    allows me to, I will do some extra study.
+  </description>
+</section>

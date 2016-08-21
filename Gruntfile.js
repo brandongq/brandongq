@@ -9,6 +9,9 @@
 
 module.exports = function (grunt) {
 
+  // Load S3 plugin
+  grunt.loadNpmTasks('grunt-s3');
+
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
@@ -220,7 +223,7 @@ module.exports = function (grunt) {
             }
           }
       }
-    }, 
+    },
 
     // Renames files for browser caching purposes
     filerev: {
@@ -423,7 +426,26 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
-    }
+    },
+
+    //Deploy WebPage
+    deployWebPage: {
+      options: {
+        key: 'AKIAIMYHHC4XHSCTJGMQ',
+        secret: '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',
+        bucket: 'brandongq',
+        access: 'public-read',
+        connections: 5
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: 'dist/',
+          src: '**/*.*',
+          dest: './'
+        }]
+      }
+    },
   });
 
 
@@ -479,5 +501,24 @@ module.exports = function (grunt) {
     'newer:jscs',
     'test',
     'build'
+  ]);
+
+  grunt.registerTask('deploy', [
+    'clean:dist',
+    'wiredep',
+    'useminPrepare',
+    'concurrent:dist',
+    'postcss',
+    'ngtemplates',
+    'concat',
+    'ngAnnotate',
+    'copy:dist',
+    'cdnify',
+    'cssmin',
+    'uglify',
+    'filerev',
+    'usemin',
+    'htmlmin',
+    'deployWebPage'
   ]);
 };
