@@ -1,0 +1,207 @@
+<h1><strong>Assignment 2</strong></h1>
+
+<section>
+  <h3>Create a NodeJS script that will do the following:<br>
+  - Download an Image from S3.<br>
+  - Check if the metadata key "move" of the image is true.<br>
+  - If true, upload the image to s3://cc116-assignment3/(MATRICULA)/image.png</h3>
+  <description>
+    <strong>ImageStuff.js</strong><br>
+    <pre><xmp>
+      var AWS = require('aws-sdk');
+      var s3 = new AWS.S3();
+      var helper = require("./S3Helper.js");
+      var fs = require('fs');
+
+      helper.downloadFromS3("brandongq", "fluffy.JPG", "flois.JPG");
+      helper.readFromS3("brandongq", "fluffy.JPG", function (err, data) {
+        if(err){
+          console.log(err);
+        }
+        else{
+          if (data.Metadata.move == 'true'){
+            var pic = fs.createReadStream('flois.JPG');
+            var params = {
+              Bucket: "cc116-assignment3",
+              Key: "22546/flois.JPG",
+              Body: pic
+            };
+            s3.upload(params, function (err, data) {
+              if (err){
+               console.log(err);
+              }
+              else{
+                console.log("Image uploaded!");
+              }
+            });
+          }else{
+            console.log("Metada = false");
+          }
+        }
+      });
+    </xmp></pre>
+    <br>
+    <strong>S3Helper.js</strong><br>
+    <pre><xmp>
+    var AWS = require('aws-sdk');
+    var s3 = new AWS.S3();
+    var fs = require('fs');
+
+    module.exports.downloadFromS3 = function (bucket, key, stream) {
+      var imgParams = {
+        Bucket: 'brandongq',
+        Key: 'fluffy.JPG'
+      };
+
+      var file = fs.createWriteStream(stream);
+      s3.getObject(imgParams).createReadStream().pipe(file);
+
+    };
+
+    module.exports.readFromS3 = function (bucket, key, callback) {
+      var params = {
+        Bucket: bucket,
+        Key: key
+      };
+
+      s3.getObject(params, function (error, data) {
+        if (error) {
+          callback(error);
+        }
+        else {
+          callback(null, data);
+        }
+      });
+    }
+    </xmp></pre>
+  </description>
+</section>
+
+<br><br>
+
+<section>
+  <section>
+    <h3>Create a NodeJS script that will do the following:<br>
+      - Will get the Nasa Astronomic Picture of the Day.<br>
+      - Save the image in the local file system.<br>
+      - Print the title of the image.</h3>
+  <description>
+    <pre><xmp>
+    var fs = require('fs');
+    var request = require('request');
+
+    var download = function (daUrl, filename, callback) {
+      var params =  { url: daUrl};
+      request(params, function (err, res, body) {
+          if (err){
+            console.log(err);
+          }
+          else{
+            var stream = request(daUrl);
+            stream.pipe(
+              fs.createWriteStream(filename)).on('close', callback);
+            console.log("Title: " + JSON.parse(body).title);
+          }
+        });
+    };
+
+    download('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY', 'POTD.JPG', function (err, data, body) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        console.log("POTD Downloaded");
+      }
+    });
+    </xmp></pre>
+  </description>
+</section>
+
+<br><br>
+
+  <section>
+  <h3>Implement Google Analytics in your personal web site (All teams will do the same for their Final Project).</h3>
+  <description>
+    1-. Signed Up on Google Analytics<br>
+    2-. Used the next script on "index.html":
+    <br>
+    <pre><xmp>
+    <script>
+      !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+          (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+        r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+      }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'OWN TRACKING ID');
+      ga('send', 'pageview');
+    </script>
+    </xmp></pre>
+
+  </description>
+</section>
+
+<br><br>
+
+<section>
+  <h3>Read and explain the following article by Martin Fowler: http://martinfowler.com/articles/richardsonMaturityModel.html</h3>
+  <description>
+    The article talks about a model cerated by Leonard Richardson, its name is Restful
+    Maturity Model, and how the model helps to explain the properties of a web-style
+    system. This model is divided in 4 levels which are mentioned to be the setps
+    towards the Glory of REST.<br>
+    <br>
+    The first level is "Level 0: The Swamp of POX":<br>
+    In this level HTTP is used as a transport system for remote interactions, but it
+    doesn't use web mechanisms. It's an interaction between systemns to read and write
+    information.<br>
+    <br>
+    The second level is "Level 1: Resources":<br>
+    In this level, instead of requesting to a singular service endpoint, one has to
+    make a request to an individual resource.<br>
+    <br>
+    The third level is "Level 2: HTTP Verbs":<br>
+    In this level verbs such as "POST" or "GET" are used as similar as possible as the
+    ones used in HTTP. It says that it is important to know when to use each verb and
+    that all verbs should be used. <br>
+    <br>
+    The fourth and last level is "Level 3: Hypermedia Controls":<br>
+    In this level HATEOAS (Hypertext As The Engine Of Application State). The purpose
+    of this level is to know what to do next or, in other words, hypermedia controls are
+    the ones in charge to know where to post something, for example. It prodvides a way
+    to make a protocol more self-documenting.
+  </description>
+</section>
+
+<br><br>
+
+<section>
+  <h3>Explain why Cloud Computing is important.</h3>
+  <description>
+    The way our society has grown and how it has done it so fast we are becoming
+    more exigent. We want to able to do more things and manage more information,
+    but that's not all, we want to be able to do it everywhere and anywhere and
+    tons of data. With cloud computing we have the "transparency" of being able
+    to have the information whenever and wherever we want. Besides the accessibility
+    it gives us, it is also a tool for processing information when we don't count
+    with the required equipment to do such process. Thanks to it, we can do many
+    things we couldn't do before and do it really fast. One easy example is being
+    able to work on a document, in teams, without being actually reunited. Google Docs
+    is a great example. And before, even when the people reunited to work on it, the
+    people weren't able to work on it at the same time, but now that's possible
+    becuase of cloud computing.
+  </description>
+</section>
+
+<br><br>
+
+<section>
+  <h3>Explain what would you like to change in this class and why.</h3>
+  <description>
+    The class is good for me. I like the content and the teaching method but I think that
+    sometimes it goes a little too fast which makes it hard for me to understand everything
+    and sometimes I get to the point where I just copy stuff but I don't actually know what
+    it is or does. So basically the speed and even though you already said no and explained
+    why it was not good for you, I would still like to change the deadline for handing in
+    the homework.
+  </description>
+</section>

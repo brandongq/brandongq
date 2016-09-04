@@ -433,7 +433,7 @@ module.exports = function (grunt) {
           'cd ~/Projects/brandongq',
           'grunt build',
           'cd dist',
-          'aws s3 sync --acl=public-read . s3://brandongq'
+          'aws s3 sync --acl=public-read . s3://brandongq',
         ].join('&&')
       }
     }
