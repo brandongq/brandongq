@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name brandongqApp.controller:TareasCtrl
+ * @name brandongqApp.controller:AboutCtrl
  * @description
- * # TareasCtrl
+ * # AboutCtrl
  * Controller of the brandongqApp
  */
 angular.module('brandongqApp')
-  .controller('TareasCtrl', function () {
+  .controller('InfoCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

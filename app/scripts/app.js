@@ -24,35 +24,25 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
+      .when('/info', {
+        templateUrl: 'views/info.html',
+        controller: 'InfoCtrl',
         controllerAs: 'about'
       })
-      .when('/tareas', {
-        templateUrl: 'views/tareas.html',
-        controller: 'TareasCtrl',
-        controllerAs: 'tareas'
-      })
-      .when('/tareas', {
-        templateUrl: 'views/tareas.html',
-        controller: 'TareasCtrl',
-        controllerAs: 'tareas'
-      })
-      .when('/tareas', {
-        templateUrl: 'views/tareas.html',
-        controller: 'TareasCtrl',
-        controllerAs: 'tareas'
-      })
-      .when('/Assignment1', {
-        templateUrl: 'views/assignment1.html',
-        controller: 'Assignment1Ctrl',
-        controllerAs: 'Assignment1'
+      .when('/contact', {
+        templateUrl: 'views/assignments.html',
+        controller: 'ContactCtrl',
+        controllerAs: 'contact'
       })
       .when('/assignment1', {
         templateUrl: 'views/assignment1.html',
         controller: 'Assignment1Ctrl',
         controllerAs: 'assignment1'
+      })
+      .when('/assignment2', {
+        templateUrl: 'views/assignment2.html',
+        controller: 'Assignment2Ctrl',
+        controllerAs: 'assignment2'
       })
       .otherwise({
         redirectTo: '/'

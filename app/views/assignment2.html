@@ -1,0 +1,190 @@
+<h1><strong>Assignment 2</strong></h1>
+
+<section>
+  <h3>Automate the deployment of your web site using Grunt.</h3>
+  <description>
+    1. On the Terminal run the next command: npm install --save-dev grunt-shell.<br>
+    2. Go to your grunt file and inside "grunt.initConfig" write down your task:<br>
+    <br>
+    shell: {<br>
+    multiple: {<br>
+    command: [<br>
+    'grunt build',<br>
+    'cd dist',<br>
+    'aws s3 sync --acl=public-read . s3://brandongq'<br>
+    ].join('&&')<br>
+    }<br>
+    }<br>
+    <br>
+    3. Go to the end of you grunt file and register your task:<br>
+    <br>
+    grunt.registerTask('deployToS3', ['shell']);
+
+
+  </description>
+</section>
+
+<section>
+  <h3>Create a Hello World in NodeJs and create a tutorial about it.</h3>
+  <description>
+    1. A ".js" file has to be created.<br>
+    2. To show the "Hello World" you have to write down: console.log("Hello World");<br>
+    3. Save the file.<br>
+    4. Open terminal.<br>
+    5. There, you have to write node filename.js<br>
+    6. Hello World will be displayed on the console.
+  </description>
+</section>
+
+<br>
+<br>
+
+<section>
+  <h3>Install the aws-sdk for NodeJs and create a tutorial about it.</h3>
+  <description>
+    1. Open Terminal<br>
+    2. Go to the project directory where it is desired to install<br>
+    3. Run the next line "npm install aws-sdk"<br>
+    4. To make use of it "var AWS = require('aws-sdk') must be on the .js file.<br>
+  </description>
+</section>
+
+<br>
+<br>
+
+<section>
+  <h3>Create a code in NodeJs that will tell you the version/date of your website in S3.</h3>
+  <description>
+    var AWS = require('aws-sdk'); <br>
+    var s3 = new AWS.S3();<br>
+    <br>
+    var params = {<br>
+      Bucket: "brandongq",<br>
+      Key : "index.html"<br>
+    };<br>
+    <br>
+    s3.headObject(params, function (error, response) {<br>
+      if(error) {<br>
+        console.log(error);<br>
+      } else {<br>
+        var date = response.LastModified; //Last modified date<br>
+        console.log(date);<br>
+      }<br>
+    });<br>
+  </description>
+</section>
+
+<br>
+<br>
+
+<section>
+  <h3>Read and explain the post about Microservices Trade-Offs by Martin Fowler. (http://martinfowler.com/articles/microservice-trade-offs.html).</h3>
+  <description>
+    In a general context, he says that even though the microservices architectural style can be <br>
+    a magnificient approach, like anything, it is not perfect and so with it some cons come along.<br>
+    <br>
+    He explained that the pros of Microservices are:<br>
+    - Facilitates the teamwork for large teams since it reinforces modular structure.<br>
+    - Due to its independency, the simple services are easier to deploy hence, system failures are less likely to happen.<br>
+    - A lot of technologies can be used and mixed for one application.<br>
+    <br>
+    And that the cons were:<br>
+    - Due to its distribution, systems are more complicated to program.<br>
+    - A consequence of distributed systems is the difficulty to maintain a strong consistency.<br>
+    - In order to manage lots of services that are redeployed regularly a mature operations team is needed.
+  </description>
+</section>
+
+<br>
+<br>
+
+<section>
+  <h3>Create a comparison table between AWS, Azure and Google Cloud.</h3>
+  <description>
+    <h4>Compute</h4><br>
+    <strong>AWS</strong><br>
+    Instance Families: 7<br>
+    Instances Types: 38<br>
+    Regions: Yes<br>
+    Zones: Yes<br>
+    <br>
+    <strong>Google</strong><br>
+    Instance Families: 4<br>
+    Instances Types: 18<br>
+    Regions: Yes<br>
+    Zones: Yes<br>
+    <br>
+    <strong>Azure</strong><br>
+    Instance Families: 4<br>
+    Instances Types: 33<br>
+    Regions: Yes<br>
+    Zones: No<br>
+    <br>
+
+    <h4>Storage and Databases</h4><br>
+    <strong>AWS</strong><br>
+    Ephemeral: Yes<br>
+    Block Storage: EBS<br>
+    Object Storage: S3<br>
+    Relational DB: RDS<br>
+    Archiving: Glacier<br>
+    NoSQL and Big Data: DynamoDB, EMR, Kinesis, Redshitf<br>
+    <strong>Google</strong><br>
+    Ephemeral: Yes<br>
+    Block Storage: President disks<br>
+    Object Storage: Google Cloud Storage<br>
+    Relational DB: Google Cloud SQL<br>
+    Archiving: Nearline<br>
+    NoSQL and Big Data: Cloud Datastore, Big Query, Hadoop<br>
+    <strong>Azure</strong><br>
+    Ephemeral: Temporary Storage - D Drive<br>
+    Block Storage: Page Blobs<br>
+    Object Storage: Block Blobs and Files<br>
+    Relational DB: Relational DBs<br>
+    Archiving: -<br>
+    NoSQL and Big Data: Windows Azure Table, HDInsight<br>
+    <br>
+
+    <h4>Networking</h4><br>
+    <strong>AWS</strong><br>
+    Virtual Network: VPC<br>
+    Public IP: Yes<br>
+    Hybrid Cloud: Yes<br>
+    DNS: Route 53<br>
+    Firewall/ACL: Yes<br>
+    <strong>Google</strong><br>
+    Virtual Network: subnet<br>
+    Public IP: Yes<br>
+    Hybrid Cloud: <br>
+    DNS: <br>
+    Firewall/ACL: Yes<br>
+    <strong>Azure</strong><br>
+    Virtual Network: VNet<br>
+    Public IP: Yes<br>
+    Hybrid Cloud: Tes<br>
+    DNS: <br>
+    Firewall/ACL: Yes<br>
+    <br>
+
+    <h4>Pricing Structure</h4><br>
+    <strong>AWS</strong><br>
+    Pricing: Per hour - rounded up<br>
+    Models: On demand, reserved, spot<br>
+    <strong>Google</strong><br>
+    Pricing: Per minute - rounded up (Minimum 10 mins)<br>
+    Models: On demand - sustained use<br>
+    <strong>Azure</strong><br>
+    Pricing: Per minute - rounded up commitments (pre-paid or monthly)<br>
+    Models: On demand - short term commitments (pre-paid or monthly)<br>
+  </description>
+</section>
+
+<br>
+<br>
+
+<section>
+  <h3>Read at least 5 sections of Seth Godin's Manifesto: "Stop Stealing Dreams" and tell me what you think about it.</h3>
+  <description>
+
+  </description>
+</section>
