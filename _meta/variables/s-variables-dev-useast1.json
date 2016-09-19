@@ -1,0 +1,5 @@
+{
+  "region": "us-east-1",
+  "resourcesStackName": "brandongq-dev-r",
+  "iamRoleArnLambda": "arn:aws:iam::292274580527:role/brandongq-dev-r-IamRoleLambda-H9BNWUDD6T8V"
+}

@@ -1,0 +1,113 @@
+<h1><strong>Assignment 4</strong></h1>
+
+<section>
+  <h3>Implement the Merge Sort algorithm On-Prem with an integer array of 1,000,000 elements</h3>
+  <description>
+    <h4>I first created a helper.</h4>
+    <strong>msHelper.js</strong><br>
+    <code><pre><xmp>
+      <!--module.exports.createArray = function() {
+          var million = new Array();
+
+          for (var x = 0; x < 1000000; x++)
+              million.push(Math.floor((Math.random() * 1000) + 1));
+
+          return million;
+      };
+
+      module.exports.doMergeSort = function (data) {
+          return mergeSort(data);
+      }
+
+      function mergeSort(data) {
+          if (data.length == 1) return data;
+
+          var mid = data.length / 2;
+          var left = data.slice(0, mid);
+          var right = data.slice(mid);
+
+          left = mergeSort(left);
+          right = mergeSort(right);
+
+          return merge(left, right);
+      };
+
+      function merge(left, right) {
+          var result = [];
+          var leftIndex = 0;
+          var rightIndex = 0;
+          while (leftIndex < left.length && rightIndex < right.length) {
+              if (left[leftIndex] > right[rightIndex]) {
+
+                  result.push(right[rightIndex]);
+                  rightIndex++;
+              }
+              else {
+                  result.push(left[leftIndex]);
+                  leftIndex++;
+              }
+          }
+          while (leftIndex < left.length) {
+              result.push(left[leftIndex]);
+              leftIndex++;
+          }
+          while (rightIndex < right.length) {
+              result.push(right[rightIndex]);
+              rightIndex++;
+          }
+          return result;
+      };-->
+    </xmp></pre></code>
+    <br>
+    <h4>And then my main file was</h4>
+    <strong>mergeIt.js</strong><br>
+    <pre><xmp>
+      var msHelper = require("./msHelper");
+
+      var data = msHelper.createArray();
+
+      console.log("calculating");
+
+      var result = msHelper.doMergeSort(data);
+    </xmp></pre>
+  </description>
+</section>
+
+<section>
+  <h3>Benchark the On-Prem implementation</h3>
+  <description>
+    The benchmark was calculate by adding "time" before the command to run the .js file on the terminal.<br>
+    The results were the following:<br>
+    <img src="../../mergesortonprem.PNG"/>
+    <br>
+    Becuase it showed the image and then it didn't:<br>
+    <strong>run #1</strong><br>
+    > real: 0m1.284s<br>
+    > user: 0m0.884s<br>
+    > sys:  0m0.096s<br><br>
+    <strong>run #2</strong><br>
+    > real: 0m1.230s<br>
+    > user: 0m0.916s<br>
+    > sys:  0m0.060s<br><br>
+    <strong>run #3</strong><br>
+    > real: 0m1.199s<br>
+    > user: 0m0.908s<br>
+    > sys:  0m0.060s<br><br>
+    <strong>run #4</strong><br>
+    > real: 0m1.191s<br>
+    > user: 0m0.912s<br>
+    > sys:  0m0.044s<br><br>
+    <strong>run #5</strong><br>
+    > real: 0m1.279s<br>
+    > user: 0m0.960s<br>
+    > sys:  0m0.036s<br><br>
+    <strong>run #6</strong><br>
+    > real: 0m1.278s<br>
+    > user: 0m0.940s<br>
+    > sys:  0m0.0s<br><br>
+    <strong>Average</strong><br>
+    > real: 0m1.244s<br>
+    > user: 0m0.920s<br>
+    > sys:  0m0.607s<br><br>
+  </description>
+</section>

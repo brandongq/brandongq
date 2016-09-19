@@ -494,7 +494,7 @@ module.exports = function (grunt) {
     'build'
   ]);
 
-  grunt.registerTask('deployToS3', [
+  grunt.registerTask('deploy', [
     'shell'
   ]);
 
