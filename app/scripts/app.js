@@ -29,10 +29,10 @@ angular
         controller: 'InfoCtrl',
         controllerAs: 'about'
       })
-      .when('/contact', {
+      .when('/assignments', {
         templateUrl: 'views/assignments.html',
-        controller: 'ContactCtrl',
-        controllerAs: 'contact'
+        controller: 'AssignmentsCtrl',
+        controllerAs: 'assignments'
       })
       .when('/assignment1', {
         templateUrl: 'views/assignment1.html',
@@ -53,6 +53,16 @@ angular
         templateUrl: 'views/assignment4.html',
         controller: 'Assignment4Ctrl',
         controllerAs: 'assignment4'
+      })
+      .when('/WeatherApp', {
+        templateUrl: 'views/weatherapp.html',
+        controller: 'WeatherappCtrl',
+        controllerAs: 'WeatherApp'
+      })
+      .when('/assignment5', {
+        templateUrl: 'views/assignment5.html',
+        controller: 'Assignment5Ctrl',
+        controllerAs: 'assignment5'
       })
       .otherwise({
         redirectTo: '/'

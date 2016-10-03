@@ -1,0 +1,86 @@
+<h1> Assignment 5</h1>
+<h2> weatherAppHelper</h2>
+<code><pre><xmp>
+  var aws = require('aws-sdk');
+  var request = require("request");
+  var lambda = new aws.Lambda({region: "us-east-1"});
+  var async = require('async');
+
+  module.exports.getWeatherOfOneCity = function (city, callback) {
+      request.get("http://api.openweathermap.org/data/2.5/weather?q=" + city +"&appid=ea4dd97a55fefeb38dcd3364cbacfd74", function (error, data) {
+          if (error) {
+              callback(error)
+          }
+          else {
+              var response = JSON.parse(data.body);
+              var result = city + "'s weather is " + response.main.temp + " Kelvin degrees";
+              callback(null, result);
+          }
+      });
+  };
+
+  module.exports.getWeatherOfManyCities = function (cities, callback) {
+      var cityArray = cities.split(',');
+
+      var getFunctions = cityArray.map(function (city) {
+          return async.apply(invokePlz, city)
+      });
+
+      async.parallel(getFunctions, function (err) {
+          if (err) {
+              callback(err);
+          }
+      });
+
+  };
+
+  function invokePlz(city, callback) {
+      lambda.invoke({
+          FunctionName: 'brandongq-sls-weatherBrandonOne',
+          InvocationType: 'RequestResponse',
+          Payload: '{\"city\": \"' + city + '\"}'
+      }, function (error, data) {
+          if (error) {
+              console.log('error', error);
+          }
+          else {
+              console.log(data.Payload);
+              callback(null, JSON.parse(data.Payload));
+          }
+      })
+  };
+</xmp></pre></code>
+<br>
+<h2>WeatherBrandon (Multiple cities)</h2>
+
+<code><pre><xmp>
+  'use strict';
+var weatherHelper = require("../lib/weatherAppHelper");
+
+module.exports.handler = function(event, context, cb) {
+  weatherHelper.getWeatherOfManyCities(event.cities, function(err,data){
+    cb(null,data);
+  });
+
+};
+</xmp></pre></code>
+<br>
+
+<h2>WeatherBrandonOne</h2>
+<code><pre><xmp>
+  'use strict';
+var weatherHelper = require("../lib/weatherAppHelper");
+
+module.exports.handler = function(event, context, cb) {
+  weatherHelper.getWeatherOfOneCity(event.city, function(err,data){
+    cb(null,data);
+  });
+};
+</xmp></pre></code>
+
+<br><br>
+
+<h3>Achive professional goals:</h3>
+<p> > Take care of / worry more about myself </p>
+<p> > Not care about what other people think </p>
+<p> > Be open to people / speak up / not keep things to myself </p>
