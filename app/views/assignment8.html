@@ -1,0 +1,95 @@
+<h1>AWS Well-Architected Framework</h1>
+<br>
+Based on the experiences experts at AWS have lived with their customers, they have created what is called a AWS Well-Architected Framework in order to evaluate the alignment between the architecture to the AWS best practices.
+<br>
+This framework is based on four pillars:<br>
+<li>Security: to protect information, systems and assets while delivering business value</li>
+<li>Reliability: to have the ability to recover from failures, to meet demand dynamically and mitigate disruptions </li>
+<li>Performance efficiency: to use computing resources to meet system requirements, and maintain such efficiency despite any change</li>
+<li>Cost optimization: to avoid or eliminate unneeded cost.</li>
+<br>
+
+<h2> General Design Principles </h2>
+The framework identifies a set of principles in order to have a good design:<br>
+
+<h3>Stop guessing your capacity needs</h3>
+There is no need to evaluate how much capacity will be needed. With cloud computing it is scalable and such capacity can be changed as needed.<br>
+
+<h3>Test systems at production scale</h3>
+Thanks to cloud computing, creating a copy of the environment just for testing is an option. This is due to the fact that the only thing that will be paid for is on the time the duplicate is used for testing.<br>
+
+<h3>Lower the risk of architecture change</h3>
+Because it is possible to automate the creation of test environments, testing can be carried out easily.<br>
+
+<h3>Automate to make architectural experimentation easier</h3>
+With automation creation and replication of systems are at low cost. Also, automation changes can be tracked, the impact can be audited and when necessary, previous parameters can be reverted to.<br>
+
+<h3>Allow for evolutionary architectures</h3>
+With the cloud, systems can evolve over time as businesses do in order to fulfill the business’ requirements. <br>
+
+
+<h2>The Four Pillars of the Well-Architected Software</h2>
+
+<h3>Security Pillar</h3>
+Among the design principles that can help perform better this pillars are: applying security at all layers, enabling traceability, automating responses to security events, focusing on securing your system, and automating security best practices. The AWS Shared Responsibility Model gives the ability to companies to mold their security needs and achieve their goals.<br><br>
+
+This pillar is composed of four areas:<br>
+
+<li>Data Protection</li>
+In this area, a variety of tools and techniques are used to prevent financial loss or complying with regulatory obligations. Therefore, other things such as patterns or controls are used to keep the data confidential, preserve its integrity the whole time and ensure that it is available as well. AWS also provides multiple means for encryption of data such as SSE (Server Side Encryption) or HTTP encryption/decryption process through Elastic Load Balancing.<br>
+
+<li>Privilege management</li>
+It marks this as an important part of security because with this you can ensure that only real, authentic and authorized users do what they are supposed to do and nothing else. In AWS it is supported by the IAM (Identity and Access Management) service to allow the control the services and resources for the users. A recommendation from AWS to keep the root account credentials safe and protected is to also add MFA (Multi-factor Authentication) by attaching it to the root account and locking it with the MFA in a physically secured location.<br>
+
+<li>Infrastructure Protection</li>
+This area covers control methodologies like defense in depth and MFA since it is critical for for successful ongoing operations. AWS offers stateful and stateless packet inspection. It also offers the use of VPC(Virtual Private Cloud) to create a private environment with a defined topology as wished.<br>
+
+<li>Detective Controls</li>
+In here is to detect security breaches. It is important to keep track on these in order to support a quality process and identify possible threats. The importances of these controls relies mainly on helping organizations identify and understand the scope of anomalous activity. AWS counts with different service that support detective controls such as: CloudTrail, CloudWatch, Config, S3 and Glacier. <br>
+
+<h3>Reliability Pillar</h3>
+Among the design principles are: test recovery procedures, automatically recovery from failure, scale horizontally to increase aggregate system availability, and stop guessing capacity. In order to  call a system reliable it should be designed to detect failure and be able to automatically heal itself.<br><br>
+
+The pillar is composed of three areas:<br>
+<li>Foundations</li>
+These play an important role because they are going to influence reliability depending on what requirements were placed. What AWS does is simple because it has already incorporated most of the foundational requirements and when they do not have them they are addressed as needed. To help with it, AWS also limits the services to prevent over-provisioning resources accidentally.<br>
+
+<li>Change Management</li>
+To be aware of how a change can affect a system helps to plan proactively, but also monitoring helps to identify trends that can lead to some capacity issue. By making a system automatically add or remove resources in response to changes in demand, besides of increasing reliability, ensures that business success will not become a burden<br>
+
+<li>Failure Management</li>
+Since it is impossible to avoid failures it is important to monitor them, know how to be aware of them, respond to them and prevent them from happening one more time. A  way of assure that failure will not cause a significant damage it is important to regularly backup the data and test it to be ensure a good recovery.<br>
+
+<h3>Performance Efficiency Pillar</h3>
+Among the design principles are: Democratize advanced technologies, go global in minutes, user server-less architectures, and experiment more often.<br><br>
+
+The pillar is composed of four areas:<br>
+
+<li>Compute</li>
+Since the configuration of the servers is based on application design, usage patterns, and configuration settings choosing a server configurations can lead to lower the performance. AWS offers virtualized servers and dynamic usage of technologies which increases the performance because resource decisions are no longer fixed.<br>
+
+<li>Storage</li>
+Because a well architected system uses multiple storage solutions it can lead to lower performance efficiency. However, AWS counts with virtualized storage as well, making easier to match the storage methods with the needs for the organization..<br>
+
+<li>Database</li>
+Database solutions can vary based on requirements for consistency, availability, partition tolerance, and latency. So, choosing a wrong database solution can also lead to a lower performance. In AWS databases can scale the compute and storage resources with no downtime, making an improvement on the efficiency.<br>
+
+<li>Space-Time trade-off</li>
+There are some trade-offs that use space to reduce time or vice-versa. With AWS going global is way easy and by using a global infrastructure the latency lowers and the throughput highers. However, you can also ensure to have all your data only in the specified regions. It is important to have test data to show which trade-offs match certain workload the best.<br>
+
+<h3>Cost Optimization Pillar</h3>
+Among the design principles are: transparently attribute expenditure, use managed services to reduce cost of ownership, trade capital expense for operating expense, benefit from economies of scale, and stop spending money on data center operations. This pillar offers techniques and guidance to optimize the deployment.<br><br>
+
+The pillar is composed of four areas:<br>
+
+<li>Matched Supply and Demand</li>
+Matching supply to demand optimally makes the lowest cost for a system. With AWS this can be automatically done by provisioning resources to match demand. It is recommendable to also monitor and benchmark in order improve the resources utilization.<br>
+
+<li>Cost-Effective Resources</li>
+The best way to save cost is by using the appropriate instances and resources for the system, meaning that a well-architected system will use the most cost-effective resources, in order to make a good economic impact. It is good to monitor the usage actively to adjust deployments accordingly and get more savings.<br>
+
+<li>Expenditure Awareness</li>
+Because of all the flexibility and agility AWS offers, it is recommendable to also think about new ways when talking about expenditures. The capacity to attribute resource costs to the individual business or product owners drives efficient usage behavior and helps reduce waste.<br>
+
+<li>Optimizing Over Time</li>
+Technology changes over time and so does AWS, that is why a best practice, and a really important one, is to reassess the existing architectural decisions to make sure that they are being the most cost-effective and if not, find what would fit the best.<br>

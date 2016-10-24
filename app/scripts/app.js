@@ -79,6 +79,11 @@ angular
         controller: 'WeathersecureCtrl',
         controllerAs: 'weathersecure'
       })
+      .when('/assignment8', {
+        templateUrl: 'views/assignment8.html',
+        controller: 'Assignment8Ctrl',
+        controllerAs: 'assignment8'
+      })
       .otherwise({
         redirectTo: '/'
       });
